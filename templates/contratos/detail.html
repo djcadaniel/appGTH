@@ -1,0 +1,11 @@
+{% extends 'layout/base.html' %}
+{% block 'title' %} Contratos {{ contratos.name }} {% endblock %}
+{% block 'content' %}
+<span class="aux-btns">
+  <a href="{% url 'contratos' %}">Atrás</a>
+</span>
+<ul class="list">
+  <li><b>Nombres:</b>{{ contratos.name }}</li>
+  <li><b>DNI:</b>{{ contratos.dni }}</li>
+</ul>
+{% endblock %}

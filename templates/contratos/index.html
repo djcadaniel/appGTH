@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %} GTH - INEL {% endblock %}
+
+{% block 'content' %}
+  <form action="{% url 'contratos' %}" method="GET" class="search">
+    <input type="text" name="search" class="search-bar" placeholder="Buscar">
+    <input type="submit" value="Buscar" class="search-btn">
+  </form>
+  <span class="aux-btns">
+    <a href="{% url 'contratos' %}">Ver todos</a>
+    <a href="{% url 'contratos_create' %}">Añadir</a>
+  </span>
+  <ul class="list">
+    {% for cont in contratos %}
+      <li>
+        {{ cont }}
+        <span>
+          <a href="{% url 'contratos_view' id=cont.id %}" class="btn btn-detail">Ver</a>
+          <a href="{% url 'contratos_edit' id=cont.id %}" class="btn btn-edit">Editar</a>
+          <a href="{% url 'contratos_delete' id=cont.id %}" class="btn btn-delete">Borrar</a>
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
