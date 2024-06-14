@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
 from pathlib import Path
+import dj_database_url
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,15 +80,17 @@ WSGI_APPLICATION = 'appContratosGTH.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+print(os.getenv('DATABASE_URL'))
 DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "dbContratos",
-        "USER": "postgres",
-        "PASSWORD": "admin",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    # 'default': {
+        # "ENGINE": "django.db.backends.postgresql",
+        # "NAME": "dbContratos",
+        # "USER": "postgres",
+        # "PASSWORD": "admin",
+        # "HOST": "127.0.0.1",
+        # "PORT": "5432",
+    # }
 }
 
 
