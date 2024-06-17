@@ -13,6 +13,7 @@ from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
 import os
+import dj_database_url
 
 load_dotenv()
 
@@ -82,15 +83,20 @@ WSGI_APPLICATION = 'appContratosGTH.wsgi.application'
 
 print(os.getenv('DATABASE_URL'))
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
     # 'default': {
-        # "ENGINE": "django.db.backends.postgresql",
-        # "NAME": "dbContratos",
-        # "USER": "postgres",
-        # "PASSWORD": "admin",
-        # "HOST": "127.0.0.1",
-        # "PORT": "5432",
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "NAME": "dbContratos",
+    #     "USER": "postgres",
+    #     "PASSWORD": "admin",
+    #     "HOST": "127.0.0.1",
+    #     "PORT": "5432",
     # }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgres://bdcontratos_user:WxqBut4DZXbtX8K5NIV46ril7F4LUy4Z@dpg-cpoc25uehbks73egvej0-a/bdcontratos',
+        conn_max_age=600
+    )
 }
 
 
@@ -129,15 +135,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    "/var/www/static/",
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     "/var/www/static/",
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
 ALLOWED_HOSTS = ['localhost','web-production-36ef0.up.railway.app']
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-36ef0.up.railway.app']
 
