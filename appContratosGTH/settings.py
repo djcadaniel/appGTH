@@ -152,7 +152,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
 # ALLOWED_HOSTS = ['localhost','web-production-36ef0.up.railway.app']
-ALLOWED_HOSTS = ['localhost','appgth-contratos.onrender.com']
+ALLOWED_HOSTS = ['appgth-contratos.onrender.com']
 # ALLOWED_HOSTS = ['127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-36ef0.up.railway.app']
