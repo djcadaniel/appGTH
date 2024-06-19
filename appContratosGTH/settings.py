@@ -139,7 +139,7 @@ STATIC_URL = '/static/'
 #     BASE_DIR / "static",
 #     "/var/www/static/",
 # ]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 if not DEBUG:
