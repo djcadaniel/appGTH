@@ -25,12 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8(4l1@7ha0#=55ke8@5l=oy8#4!%p=2v=bl2@q&eg%fvgv8ky+'
+# SECRET_KEY = 'django-insecure-8(4l1@7ha0#=55ke8@5l=oy8#4!%p=2v=bl2@q&eg%fvgv8ky+'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -146,7 +151,8 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
-ALLOWED_HOSTS = ['localhost','web-production-36ef0.up.railway.app']
+# ALLOWED_HOSTS = ['localhost','web-production-36ef0.up.railway.app']
+ALLOWED_HOSTS = ['localhost','appgth-contratos.onrender.com']
 # ALLOWED_HOSTS = ['127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-36ef0.up.railway.app']
