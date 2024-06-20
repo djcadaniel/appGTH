@@ -31,13 +31,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['appgth.onrender.com']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
+# ALLOWED_HOSTS = ['localhost','web-production-36ef0.up.railway.app']
+# ALLOWED_HOSTS = ['appgth-contratos.onrender.com']
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
