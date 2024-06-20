@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from pathlib import Path
+import os
 import dj_database_url
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
@@ -32,7 +32,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
+
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
@@ -85,21 +87,20 @@ WSGI_APPLICATION = 'appContratosGTH.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-print(os.getenv('DATABASE_URL'))
+# print(os.getenv('DATABASE_URL'))
 # DATABASES = {
-    # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-    # 'default': {
-    #     "ENGINE": "django.db.backends.postgresql",
-    #     "NAME": "dbContratos",
-    #     "USER": "postgres",
-    #     "PASSWORD": "admin",
-    #     "HOST": "127.0.0.1",
-    #     "PORT": "5432",
-    # }
+#     # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+#     'default': {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "dbContratos",
+#         "USER": "postgres",
+#         "PASSWORD": "admin",
+#         "HOST": "127.0.0.1",
+#         "PORT": "5432",
+#     }
 # }
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
         default='postgres://bdcontratos_user:WxqBut4DZXbtX8K5NIV46ril7F4LUy4Z@dpg-cpoc25uehbks73egvej0-a/bdcontratos',
         conn_max_age=600
     )
@@ -145,21 +146,18 @@ STATIC_URL = '/static/'
 #     BASE_DIR / "static",
 #     "/var/www/static/",
 # ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
 # ALLOWED_HOSTS = ['localhost','web-production-36ef0.up.railway.app']
 # ALLOWED_HOSTS = ['appgth-contratos.onrender.com']
 # ALLOWED_HOSTS = ['127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-36ef0.up.railway.app']
+# CSRF_TRUSTED_ORIGINS = ['http://*','https://web-production-36ef0.up.railway.app']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
