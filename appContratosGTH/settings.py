@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'appContratosGTH.wsgi.application'
 # }
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://bdcontratos_user:WxqBut4DZXbtX8K5NIV46ril7F4LUy4Z@dpg-cpoc25uehbks73egvej0-a/bdcontratos',
+        default='postgresql://bdcontratos_user:WxqBut4DZXbtX8K5NIV46ril7F4LUy4Z@dpg-cpoc25uehbks73egvej0-a/bdcontratos',
         conn_max_age=600
     )
 }
