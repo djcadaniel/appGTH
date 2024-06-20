@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['appgth.onrender.com']
+ALLOWED_HOSTS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
@@ -91,23 +91,23 @@ WSGI_APPLICATION = 'appContratosGTH.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # print(os.getenv('DATABASE_URL'))
-# DATABASES = {
-#     # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-#     'default': {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "dbContratos",
-#         "USER": "postgres",
-#         "PASSWORD": "admin",
-#         "HOST": "127.0.0.1",
-#         "PORT": "5432",
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://bdcontratos_user:WxqBut4DZXbtX8K5NIV46ril7F4LUy4Z@dpg-cpoc25uehbks73egvej0-a/bdcontratos',
-        conn_max_age=600
-    )
+    # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "dbContratos",
+        "USER": "postgres",
+        "PASSWORD": "admin",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://bdcontratos_user:WxqBut4DZXbtX8K5NIV46ril7F4LUy4Z@dpg-cpoc25uehbks73egvej0-a/bdcontratos',
+#         conn_max_age=600
+#     )
+# }
 
 
 # Password validation
@@ -144,12 +144,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 #     "/var/www/static/",
 # ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 if not DEBUG:
